@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行情快訊 - 客情查查</title>
+  <style>
+    :root {
+      --primary-color: #ff6b81;
+      --bg-color: #fff5f7;
+      --card-bg: #ffffff;
+      --text-main: #2f3542;
+      --text-sub: #747d8c;
+      --danger-red: #ff4757;
+      --danger-bg: #ffe0e3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); padding-bottom: 75px; }
+
+    /* 頂部 Header 統一粉色系 */
+    .header { padding: 20px; text-align: center; background: white; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+    .header h1 { font-size: 22px; color: var(--primary-color); }
+    .header p { font-size: 12px; color: var(--text-sub); margin-top: 4px; }
+
+    .container { padding: 15px; max-width: 600px; margin: 0 auto; }
+
+    /* 置頂健康提醒卡片 */
+    .card-top { background: linear-gradient(135deg, #fff0f3, #ffe6eb); border: 1px solid #ffccd5; border-radius: 16px; padding: 16px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .card-top-title { font-size: 15px; font-weight: bold; color: var(--primary-color); display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .update-date { font-size: 11px; color: var(--text-sub); margin-bottom: 10px; }
+    .card-top-content { font-size: 13px; line-height: 1.6; color: #333; }
+
+    /* 一般新聞卡片 */
+    .card { background: white; border-radius: 16px; padding: 18px; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; }
+    .card-title { font-size: 16px; font-weight: bold; color: var(--text-main); border-bottom: 2px solid #fff0f3; padding-bottom: 8px; margin-bottom: 12px; }
+    
+    .price-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #f0f0f0; font-size: 13.5px; }
+    .price-item:last-child { border-bottom: none; }
+    .price-tag { font-weight: bold; color: var(--primary-color); background: #fff0f5; padding: 4px 10px; border-radius: 8px; border: 1px dashed var(--primary-color); font-size: 12px; }
+
+    .note-box { background: #fff0f5; border-left: 3px solid var(--primary-color); padding: 12px; border-radius: 8px; font-size: 12px; color: #333; margin-top: 12px; line-height: 1.6; }
+
+    /* 尚未打好 / 整理中占位樣式 */
+    .pending-box {
+      text-align: center;
+      padding: 25px 15px;
+      background: #fafafa;
+      border: 2px dashed #e0e0e0;
+      border-radius: 12px;
+      color: #888;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .pending-box .icon { font-size: 24px; margin-bottom: 6px; display: block; }
+
+    /* 底部固定導覽列 */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #ffffff;
+      border-top: 1px solid #eaeaea;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 900;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 11px;
+      font-weight: bold;
+      color: #8e8e93;
+      text-decoration: none;
+      flex: 1;
+      height: 100%;
+      transition: background 0.2s;
+    }
+    .nav-item:active { background-color: #f9f9f9; }
+    .nav-item.active { color: var(--primary-color); }
+    .nav-item .icon { font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>📰 行情與市場快訊</h1>
+    <p>市場資訊快報 · 站長溫馨宣導</p>
+  </div>
+
+  <div class="container">
+
+    <!-- 置頂宣導 -->
+    <div class="card-top">
+      <div class="card-top-title">🚨 【置頂健康提醒】新型新冠與流感大流行中！</div>
+      <div class="update-date">📅 最新更新日期：2026 年 7 月 27 日</div>
+      <div class="card-top-content">
+        提醒各位公關姐妹們！最近新型新冠肺炎與流感病毒非常嚴重。我們接觸的人流多、環境較密閉，<strong>非常容易被傳染感冒</strong>。<br><br>
+        建議大家趁現在<strong>公費疫苗還可以施打時，趕快抽空去接種保護自己</strong>！照顧好自己的健康才能安心賺大錢喔！❤️
+      </div>
+    </div>
+
+    <!-- 台北酒店薪水行情 -->
+    <div class="card">
+      <div class="card-title">📊 台北地區店家薪水平均行情</div>
+      
+      <div class="price-item">
+        <span>📍 東區禮服店（框店/節數）</span>
+        <span class="price-tag">10 min / $240 - $280</span>
+      </div>
+
+      <div class="price-item">
+        <span>📍 林森禮服店（框店/節數）</span>
+        <span class="price-tag">10 min / $260 - $300</span>
+      </div>
+
+      <div class="note-box">
+        💡 <strong>站長觀念小科普：</strong><br>
+        ❗️ 有時候實領發現退的比較少，<strong>真的不一定是經紀人在偷扣</strong>！而是每一家店家給的「節退/拆帳比例」本來就有所不同喔！
+      </div>
+    </div>
+
+    <!-- 傳播 / 局 薪水行情（整理中） -->
+    <div class="card">
+      <div class="card-title">✨ 傳播 / 飯局 薪水行情</div>
+      <div class="pending-box">
+        <span class="icon">🚧</span>
+        <b>資料整理中...</b><br>
+        詳細傳播與飯局行情資料尚未打好，預計近期更新，敬請期待！
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部固定導覽列 -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <span class="icon">🔍</span>
+      <span class="text">客情查詢</span>
+    </a>
+    <a href="beauty.html" class="nav-item">
+      <span class="icon">🛍️</span>
+      <span class="text">深夜美業/廣告</span>
+    </a>
+    <a href="market.html" class="nav-item active">
+      <span class="icon">📰</span>
+      <span class="text">行情快訊</span>
+    </a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSehpYB7qk3y8IQjcAnGRvX9kAa9HIIKtzJ425e57szQpt90-A/viewform?usp=preview" target="_blank" rel="noopener noreferrer" class="nav-item">
+      <span class="icon">➕</span>
+      <span class="text">通報舉報</span>
+    </a>
+  </nav>
+
+</body>
+</html>
